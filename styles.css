@@ -1,47 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #f8fafc; /* Lighter modern gray */
+    color: #334155;
+    scroll-behavior: smooth;
 }
 
-/* Glassmorphism untuk Navbar */
-.glass-nav {
-    background: rgba(2, 6, 23, 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+/* Header Gradient & Animation */
+header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    position: relative;
+    overflow: hidden;
 }
 
-/* Glassmorphism untuk Kartu */
-.glass-card {
-    background: rgba(30, 41, 59, 0.6);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 50%);
+    animation: pulse-glow 8s infinite alternate ease-in-out;
 }
 
-.glass-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(14, 165, 233, 0.3);
-    box-shadow: 0 10px 30px -10px rgba(14, 165, 233, 0.2);
+@keyframes pulse-glow {
+    0% { transform: scale(0.9) translate(0, 0); opacity: 0.4; }
+    100% { transform: scale(1.1) translate(2%, 2%); opacity: 1; }
 }
 
-/* Scroll Reveal Animation */
-.reveal {
+/* Card Styling and Hover Effects */
+.cv-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.cv-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #0ea5e9;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease;
+}
+
+.cv-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+    border-color: #e2e8f0;
+}
+
+.cv-card:hover::after {
+    transform: scaleY(1);
+}
+
+/* Subtitle/Header Accents */
+h2 {
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: #0ea5e9;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.cv-card:hover h2::after {
+    width: 100%;
+}
+
+/* Entry Animation for Cards */
+.animate-enter {
+    animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-}
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
+    transform: translateY(20px);
 }
 
-/* Gradient Text */
-.text-gradient {
-    background: linear-gradient(to right, #0ea5e9, #38bdf8, #818cf8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+
+@keyframes fade-in-up {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Interactive List Items */
+li {
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+li:hover {
+    color: #0ea5e9;
+    transform: translateX(4px);
 }
 
 /* Custom Scrollbar */
@@ -49,12 +117,12 @@ body {
     width: 8px;
 }
 ::-webkit-scrollbar-track {
-    background: #020617; 
+    background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-    background: #334155; 
+    background: #cbd5e1;
     border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #475569; 
+    background: #94a3b8;
 }
